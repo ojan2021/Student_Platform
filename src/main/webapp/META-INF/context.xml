@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-    <Resource name="jdbc/postgresql" auth="Container"
+    <Resource name="jdbc/postgres" auth="Container"
               type="javax.sql.DataSource" driverClassName="org.postgresql.Driver"
               url="jdbc:postgresql://localhost:5432/postgres"
-              username="postgres" password="Maestro76" maxActive="20" maxIdle="10" maxWait="-1"/>
+              username="postgres" password="Maestro76" maxTotal="20" maxIdle="10" maxWaitMillis="-1"/>
 </Context>

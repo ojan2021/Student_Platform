@@ -45,8 +45,8 @@ public class AuthControllerServlet extends HttpServlet {
         if(username != null && password != null && username.length() > 3 && password.length() >= 5) {
 
             try {
-                ResultSet resultSet = DBUtils.query("SELECT COUNT(1) as user_exists FROM users WHERE username = ? and password = ? LIMIT 1", new String[] {username, password});
-                if(resultSet != null && resultSet.next() && resultSet.getInt("user_exists") > 0){
+                ResultSet resultSet = DBUtils.query("SELECT * FROM users WHERE username = ? and password = ? LIMIT 1", new String[] {username, password});
+                if(resultSet != null && resultSet.next() ){
                     HttpSession session = req.getSession();
                     session.setAttribute(AuthControllerServlet.AUTHORIZE_FIELD, true);
                     session.setAttribute(AuthControllerServlet.CURRENT_USER, username);
@@ -54,7 +54,7 @@ public class AuthControllerServlet extends HttpServlet {
                     resp.sendRedirect("/ada_project_war");
 
                 } else{
-                    System.out.print("No users exist within system");
+                    System.out.println("No users exist within system");
                     req.setAttribute("error_message", new String[] {"No user exists within the system"});
                 }
             } catch (SQLException throwables) {

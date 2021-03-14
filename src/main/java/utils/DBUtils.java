@@ -15,24 +15,26 @@ public class DBUtils {
         try {
             Context initContext = new InitialContext();
             Context webContext = (Context) initContext.lookup("java:/comp/env");
-            dataSource = (DataSource) webContext.lookup("jdbc/postgresql");
+            dataSource = (DataSource) webContext.lookup("jdbc/postgres");
+            System.out.println(dataSource);
         } catch (NamingException e) {
             e.printStackTrace();
         }
     }
 
     public static ResultSet query(String sql, String... args) throws SQLException {
-
+        System.out.println("Heloooooooooooooooooooooooooooooooo");
         Connection connection = null;
         PreparedStatement statement = null;
-        ResultSet resultSet = null;
         try {
+            System.out.println("World");
             connection = dataSource.getConnection();
+            System.out.println("asdasd "+connection);
             statement = connection.prepareStatement(sql);
-            for (int i  = 0; i <= args.length; i++) {
-                statement.setString(i, args[i]);
+            for (int i  = 0; i < args.length; i++) {
+                statement.setString(i+1, args[i]);
             }
-            boolean result = statement.execute(sql);
+            boolean result = statement.executeQuery(sql).next();
             if (result) {
                 return statement.getResultSet();
             } else {
@@ -40,13 +42,13 @@ public class DBUtils {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } //finally {
-//
-//            if (statement != null)
-//                statement.close();
-//            if (connection != null)
-//                connection.close();
-//        }
+        } finally {
+
+            if (statement != null)
+                statement.close();
+            if (connection != null)
+                connection.close();
+        }
 
         return null;
     }
