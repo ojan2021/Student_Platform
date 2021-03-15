@@ -1,0 +1,38 @@
+#HelloMessage {
+    font-size: 32px;
+    font-family: 'Redressed', cursive;
+}
+#logOut {
+    background-color: #50a3a2;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+
+#logOut:hover {
+    background-color: #50a3a2;
+    color: white;
+}
+
+#courseTable {
+    font-size: 32px;
+    font-family: 'Redressed', cursive;
+}
+
+#enroll {
+    background-color: #50a3a2;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: 'Dubai Light', cursive;
+
+}
